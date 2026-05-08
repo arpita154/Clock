@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Clock</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://www.thoughtco.com/thmb/5TijWSbM9cMuz86llrPz96WpFco=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/129917122-58b9cefe3df78c353c389ff3.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .clock-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      padding: 32px 40px;
+      box-shadow: 0 24px 60px rgba(134, 11, 11, 0.18);
+      text-align: center;
+      min-width: 300px;
+    }
+
+    .clock-card h1 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      color: #180aad;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .clock {
+      font-size: 4rem;
+      letter-spacing: 0.08em;
+      color: #222;
+      font-weight: 700;
+    }
+
+    .clock span {
+      display: inline-block;
+      min-width: 1.2ch;
+    }
+
+    .date {
+      margin-top: 10px;
+      font-size: 1.15rem;
+      color: #2d2d2d;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: #330101;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-card">
+    <h1>Digital Clock</h1>
+    <div class="clock" id="clock">00:00:00</div>
+    <div class="date" id="date">01 January 1970</div>
+    <div class="subtitle">Real-time clock showing hours, minutes, seconds, day, month and year</div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const month = monthNames[now.getMonth()];
+      const year = now.getFullYear();
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('date').textContent = `${day} ${month} ${year}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateClock();
+      setInterval(updateClock, 1000);
+    });
+  </script>
+</body>
+</html>
